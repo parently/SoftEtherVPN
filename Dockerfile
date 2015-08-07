@@ -1,6 +1,6 @@
-FROM centos:centos7
+FROM ubuntu:trusty
 
-MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
+MAINTAINER Pavel Sutyrin <p.sutyrin@parently.ru>
 
 COPY build.sh /build.sh
 COPY run.c /usr/local/src/

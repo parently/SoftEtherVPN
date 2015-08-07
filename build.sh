@@ -1,28 +1,19 @@
 #!/bin/bash
 
-yum -y update \
-  && yum -y groupinstall "Development Tools" \
-  && yum -y install readline-devel ncurses-devel openssl-devel
-
-git clone https://github.com/SoftEtherVPN/SoftEtherVPN.git /usr/local/src/vpnserver
-
-cd /usr/local/src/vpnserver
-
-cp src/makefiles/linux_64bit.mak Makefile
-make
-
-cp bin/vpnserver/vpnserver /opt/vpnserver
-cp bin/vpnserver/hamcore.se2 /opt/hamcore.se2
-cp bin/vpncmd/vpncmd /opt/vpncmd
-
-rm -rf /usr/local/src/vpnserver
-
-gcc -o /usr/local/sbin/run /usr/local/src/run.c
-
-rm /usr/local/src/run.c
-
-yum -y remove readline-devel ncurses-devel openssl-devel \
-  && yum -y groupremove "Development Tools" \
-  && yum clean all
+apt-get update && \
+apt-get install build-essential wget unzip && \
+apt-get install libreadline-dev libssl-dev libncurses5-dev && \
+wget https://github.com/SoftEtherVPN/SoftEtherVPN/archive/4b65e251f240d0b36c704acd598f4ceb07c41413.zip &&\
+unzip 4b65e251f240d0b36c704acd598f4ceb07c41413.zip && \
+cd SoftEtherVPN-4b65e251f240d0b36c704acd598f4ceb07c41413 && \
+cp src/makefiles/linux_64bit.mak Makefile && \
+make && \
+cp bin/vpnserver/vpnserver /opt/vpnserver && \
+cp bin/vpnserver/hamcore.se2 /opt/hamcore.se2 && \
+cp bin/vpncmd/vpncmd /opt/vpncmd && \
+rm -rf /root/SoftEtherVPN-4b65e251f240d0b36c704acd598f4ceb07c41413 && \
+COPY run.c run.c
+gcc -o /usr/local/sbin/run run.c && \
+rm run.c
 
 exit 0
