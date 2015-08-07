@@ -3,7 +3,7 @@ FROM ubuntu:trusty
 MAINTAINER Pavel Sutyrin <p.sutyrin@parently.ru>
 
 COPY build.sh /build.sh
-COPY run.c /root
+COPY run.c /
 RUN bash /build.sh \
     && rm /build.sh
 
