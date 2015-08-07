@@ -11,8 +11,8 @@ make && \
 cp bin/vpnserver/vpnserver /opt/vpnserver && \
 cp bin/vpnserver/hamcore.se2 /opt/hamcore.se2 && \
 cp bin/vpncmd/vpncmd /opt/vpncmd && \
-rm -rf /root/SoftEtherVPN-4b65e251f240d0b36c704acd598f4ceb07c41413 && \
-COPY run.c run.c
+cd .. && \
+rm -rf SoftEtherVPN-4b65e251f240d0b36c704acd598f4ceb07c41413 && \
 gcc -o /usr/local/sbin/run run.c && \
 rm run.c
 
